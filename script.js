@@ -1,54 +1,49 @@
-let computerSelection;
-
-function getComputerChoice() {
-    let random = Math.floor(Math.random()*3) + 1;
-
-    if(random === 1) {
-        computerSelection = 'Rock';
-    } else if(random === 2) {
-        computerSelection = 'Paper';
-    } else if(random === 3) {
-        computerSelection = 'Scissors';
-    } else {
-        comSelected = null;
-    }
-    console.log(computerSelection);
-}
-getComputerChoice();
-
-let playerSelection;
-
-function playerChoice() {
+function playerSelection() {
     selected = prompt('Which one? pick up!', '');
 
-    playerSelection = 
-    (selected.replace(/Rock/i, 'Rock') === 'Rock') ? 'Rock' :
+    return (selected.replace(/Rock/i, 'Rock') === 'Rock') ? 'Rock' :
     (selected.replace(/Paper/i, 'Paper') === 'Paper') ? 'Paper' :
     (selected.replace(/Scissors/i, 'Scissors') === 'Scissors') ? 'Scissors' : 'Something wrong';
 
-    console.log(playerSelection);
-
-    //return selected;
 }
-playerChoice();
+//console.log(playerSelection());
 
+function computerSelection() {
+    let random = Math.floor(Math.random()*3) + 1;
+    //console.log(random);
 
-function playRound(playerSelection, computerSelection) {
-    if(playerSelection === 'Rock' && computerSelection === 'Paper') {
-        console.log(`You Lose!, You picked ${playerSelection} and Computer picked ${computerSelection}: Paper beats Rock`);
-    } else if(playerSelection === 'Rock' && computerSelection === 'Scissors') {
-        console.log(`Yes!! You Win !!, You picked ${playerSelection} and Computer picked ${computerSelection}: Rock beats Scissors`);
-    } else if(playerSelection === 'Paper' && computerSelection === 'Rock') {
-        console.log(`Yes!! You Win !!, You picked ${playerSelection} and Computer picked ${computerSelection}: Paper beats Rock`);
-    } else if(playerSelection === 'Paper' && computerSelection === 'Scissors') {
-        console.log(`You Lose!, You picked ${playerSelection} and Computer picked ${computerSelection}: Scissors beats Paper`);
-    } else if(playerSelection === 'Scissors' && computerSelection === 'Rock') {
-        console.log(`You Lose!, You picked ${playerSelection} and Computer picked ${computerSelection}: Rock beats Scissors`);
-    } else if(playerSelection === 'Scissors' && computerSelection === 'Paper') {
-        console.log(`Yes!! You Win !!, You picked ${playerSelection} and Computer picked ${computerSelection}: Scissors beats Paper`);
+    if(random === 1) {
+        return 'Rock';
+    } else if(random === 2) {
+        return 'Paper';
+    } else if(random === 3) {
+        return 'Scissors';
     } else {
-        console.log(`Draw!! Focus and try again!!!`)
+        return null;
     }
 }
 
-playRound(playerSelection, computerSelection);
+function playRound(playerSelection, computerSelection) {
+    if(playerSelection === 'Rock' && computerSelection === 'Paper') {
+        return (`You Lose!, You picked ${playerSelection} and Computer picked ${computerSelection}: Paper beats Rock`);
+    } else if(playerSelection === 'Rock' && computerSelection === 'Scissors') {
+        return (`Yes!! You Win !!, You picked ${playerSelection} and Computer picked ${computerSelection}: Rock beats Scissors`);
+    } else if(playerSelection === 'Paper' && computerSelection === 'Rock') {
+        return (`Yes!! You Win !!, You picked ${playerSelection} and Computer picked ${computerSelection}: Paper beats Rock`);
+    } else if(playerSelection === 'Paper' && computerSelection === 'Scissors') {
+        return (`You Lose!, You picked ${playerSelection} and Computer picked ${computerSelection}: Scissors beats Paper`);
+    } else if(playerSelection === 'Scissors' && computerSelection === 'Rock') {
+        return (`You Lose!, You picked ${playerSelection} and Computer picked ${computerSelection}: Rock beats Scissors`);
+    } else if(playerSelection === 'Scissors' && computerSelection === 'Paper') {
+        return (`Yes!! You Win !!, You picked ${playerSelection} and Computer picked ${computerSelection}: Scissors beats Paper`);
+    } else {
+        return (`Draw!! Focus and try again!!!`)
+    }
+}
+
+function game() {
+    for(let i = 1; i <=5; i++) {
+        console.log(`${i} ${playRound(playerSelection(), computerSelection())}`);
+    }
+}
+game();
